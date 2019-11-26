@@ -34,6 +34,8 @@ function CalcolaCarattere($ris)
     $pari = "";
     $dispari = "";
 
+    echo "$ris <br>";
+
     for ($i = 0; $i < 15; $i++) {
         $let = $ris{
             $i};
@@ -202,9 +204,10 @@ function CalcolaData($gio, $mes, $ann, $s)
 
     $giorno = "";
 
+
     if ($s == "M") {
         if ($gio < 10) {
-            $giorno = "0" + $gio;
+            $giorno = "0" . strval($gio);
         } else {
             $giorno = $gio;
         }
@@ -254,6 +257,7 @@ function CalcolaCognome($cognome)
 {
 
     $cognome = strtoupper($cognome);
+    $cognome = str_replace(' ', '', $cognome);
     $ris = "";
     $tot = 0;
     for ($i = 0; ($i < strlen($cognome)) && ($tot < 3); $i++) {
@@ -276,7 +280,7 @@ function CalcolaCognome($cognome)
 
             if (Vocale($lettera)) {
                 $ris .= $lettera;
-                $tot++;
+                $tot += 1;
             }
         }
     } else {
@@ -292,10 +296,9 @@ function CalcolaNome($nome)
 {
 
     $nome = strtoupper($nome);
+    $nome = str_replace(' ', '', $nome);
 
     $ris = "";
-    $i = 0;
-    $tot = 0;
 
     $ris1 = "";
     $tot1 = 0;
@@ -319,9 +322,10 @@ function CalcolaNome($nome)
     }
 
     $ris = $ris1;
+    $tot = $tot1;
 
     if (strlen($ris) < 3) {
-        for ($i = 0; $i < strlen($nome); $i++) {
+        for ($i = 0; $i < strlen($nome) && ($tot < 3); $i++) {
             $lettera = $nome{
                 $i};
 
