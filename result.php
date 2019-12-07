@@ -1,9 +1,5 @@
 <?php
 
-$d = $_POST;
-
-echo CalcolaCodice($d["cognome"], $d["nome"], $d["giorno"], $d["mese"], $d["anno"], $d["sesso"], $d["comune"]);
-
 function CalcolaCodice($cognome, $nome, $giorno, $mese, $anno, $sesso, $comune)
 {
     $risultato = "";
@@ -33,8 +29,6 @@ function CalcolaCarattere($ris)
     $i = 0;
     $pari = "";
     $dispari = "";
-
-    echo "$ris <br>";
 
     for ($i = 0; $i < 15; $i++) {
         $let = $ris{
@@ -360,17 +354,10 @@ function Vocale($let)
         return false;
     }
 }
+
+
+$d = $_REQUEST;
+$cod = CalcolaCodice($d["cognome"], $d["nome"], $d["giorno"], $d["mese"], $d["anno"], $d["sesso"], $d["comune"]);
+
+echo $cod;
 ?>
-
-<html>
-
-<head>
-    <title>Result</title>
-</head>
-
-<body>
-    <br>
-    <a href="index.php"> TORNA ALLA HOME </a>
-</body>
-
-</html>
